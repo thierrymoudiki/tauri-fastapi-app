@@ -1,20 +1,70 @@
+# Tauri + FastAPI App
 
-# Tauri app
+Simple desktop app using:
+- Tauri (desktop shell)
+- Vanilla frontend (HTML + JS)
+- FastAPI (backend API)
 
-Run it 
+---
 
-In the backend: 
+## 📦 Project structure
+
+- `frontend/` → UI (HTML + JS)
+- `backend/` → FastAPI server
+- `src-tauri/` → Tauri config
+
+---
+
+## 🚀 Run the backend (FastAPI)
+
+In one terminal:
 
 ```bash
-uvicorn main:app --reload --port 8000
+uvicorn backend.main:app --reload --port 8000
 ```
 
-Visit 
+Test API:
 
-http://127.0.0.1:8000/add?a=6&b=5
+http://127.0.0.1:8000/ping
 
-In the Tauri app: 
+Expected:
+
+```json
+pong 
+```
+
+---
+
+## 🖥️ Run the desktop app (Tauri)
+
+In another terminal (inside `tauri-app`):
 
 ```bash
 npm run tauri dev
+```
+
+This will:
+- start the frontend dev server (if configured in Tauri)
+- open the desktop window
+
+---
+
+## ⚠️ Important notes
+
+- Backend runs on **port 8000**
+- Frontend runs on **port 1420 (dev)**
+- Do NOT manually start multiple servers on the same port
+
+---
+
+## 🧠 Architecture
+
+Tauri UI → calls FastAPI → returns JSON → UI updates
+
+Example flow:
+
+1. Click button in desktop app
+2. JS calls `http://127.0.0.1:8000/ping`
+3. FastAPI returns result
+4. UI updates display
 ```
