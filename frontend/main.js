@@ -5,3 +5,7 @@ async function ping() {
   document.getElementById("output").innerText =
     data.message;
 }
+
+function clearOutput() {
+  document.getElementById("output").innerText = "";
+}
